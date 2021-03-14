@@ -4,6 +4,7 @@ import com.directmedia.onlinestore.core.entity.Catalogue;
 import com.directmedia.onlinestore.core.entity.Work;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,20 +33,10 @@ public class WorkDetailsServlet extends HttpServlet {
                 break;
             }
         }
-
-        PrintWriter out = response.getWriter();
-        out.print("<html> <body> Descriptif de l'oeuvre  <br/><br/>");
-
-        out.print("Titre : "+work.getTitle()+"<br/>");
-        out.print("Annee de parution : "+work.getRelease()+"<br/>");
-        out.print("Genre : "+work.getGenre()+"<br/>");
-        out.print("Artiste : "+work.getMainArtist().getName()+"<br/>");
-        out.print("Resume : "+work.getSummary()+"<br/>");
-        out.print("<form action=\"addToCart\" method=\"POST\">");
-        out.print("<input type=\"hidden\" name=\"identifiant\" value=\""+work.getId()+"\"/>");
-        out.print("<input type=\"submit\" value=\"Ajouter au caddie\" />");
-
-        out.print("</body> </html>");
+        request.setAttribute("work", work);
+        RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/work-details.jsp");
+        disp.forward(request, response);
+      
 
     }
 
