@@ -61,7 +61,7 @@ public class CatalogueServlet extends HttpServlet {
         Catalogue.listOfWork.add(home);
         Catalogue.listOfWork.add(sky);
 
-        out.print("<html><body><center> <h1> Ouevres au Catalogue</h1> </center> <br?><br/>");
+       
         }
 
         for (Work work : Catalogue.listOfWork) {
